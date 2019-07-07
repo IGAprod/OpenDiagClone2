@@ -2,6 +2,8 @@ package com.example.opendiagclone;
 
 import android.os.Bundle;
 
+import com.example.opendiagclone.adapter.InformationListAdapter;
+import com.example.opendiagclone.models.Information;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -13,7 +15,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
@@ -31,15 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_information);
                     selectedFragment = new InfoFragment();
                     break;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_parametrs);
                     selectedFragment = new ParametersFragment();
                     break;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_errors);
                     selectedFragment = new ErrorsFragment();
                     break;
             }
@@ -55,13 +57,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new InfoFragment()).commit();
 
-      //  viewPagerType = (ViewPager) findViewById(R.id.viewPagerType);
-        tabLayoutType = findViewById(R.id.tabLayoutType);
+
+
+        //  viewPagerType = (ViewPager) findViewById(R.id.viewPagerType);
+      /*  tabLayoutType = findViewById(R.id.tabLayoutType);
         tabLayoutMark = findViewById(R.id.tabLayoutMark);
 
         tabLayoutType.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-        });
+        }); */
 
 
     }
@@ -97,19 +100,15 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                mTextMessage.setText(R.string.title_information);
                 selectedFragment = new InfoFragment();
                 break;
             case R.id.navigation_dashboard:
-                mTextMessage.setText(R.string.title_parametrs);
                 selectedFragment = new ParametersFragment();
                 break;
             case R.id.navigation_notifications:
-                mTextMessage.setText(R.string.title_errors);
                 selectedFragment = new ErrorsFragment();
                 break;
             case R.id.add_block:
-                mTextMessage.setText(R.string.add_block);
                 selectedFragment = new AddBlockFragment();
                 break;
         }

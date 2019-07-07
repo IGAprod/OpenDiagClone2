@@ -4,10 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.opendiagclone.adapter.InformationListAdapter;
+import com.example.opendiagclone.models.Information;
+
+import java.util.ArrayList;
 
 public class AddBlockFragment extends Fragment {
 
@@ -19,6 +26,8 @@ public class AddBlockFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
     }
 }
