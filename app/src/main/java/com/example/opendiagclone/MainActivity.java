@@ -3,8 +3,10 @@ package com.example.opendiagclone;
 import android.os.Bundle;
 
 import com.example.opendiagclone.adapter.InformationListAdapter;
+import com.example.opendiagclone.adapter.PageBlockAdapter;
 import com.example.opendiagclone.models.Information;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -60,29 +63,6 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new InfoFragment()).commit();
-
-
-
-        //  viewPagerType = (ViewPager) findViewById(R.id.viewPagerType);
-      /*  tabLayoutType = findViewById(R.id.tabLayoutType);
-        tabLayoutMark = findViewById(R.id.tabLayoutMark);
-
-        tabLayoutType.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        }); */
 
 
     }
