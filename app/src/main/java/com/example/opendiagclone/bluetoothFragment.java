@@ -60,7 +60,7 @@ public class bluetoothFragment extends Fragment {
                     Toast.makeText(getActivity(),
                             nearDevice.toString(), Toast.LENGTH_LONG).show();
 
-                    deviceArrayList.add(nearDevice);
+                  //  deviceArrayList.add(nearDevice);
                     listAdapter.addDevice(nearDevice);
                     listAdapter.notifyDataSetChanged();
                 }
