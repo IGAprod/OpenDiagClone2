@@ -1,5 +1,7 @@
 package com.example.opendiagclone;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.opendiagclone.adapter.InformationListAdapter;
@@ -8,20 +10,18 @@ import com.example.opendiagclone.models.Information;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.bluetooth.*;
 
-import java.util.ArrayList;
+import java.util.Set;
+
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayoutMark;
     private ViewPager viewPagerType;
     private ViewPager viewPagerMark;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new InfoFragment()).commit();
 
-
     }
 
     @Override
@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.add_block:
                 selectedFragment = new AddBlockFragment();
+                break;
+            case R.id.bluetoothConnection:
+                selectedFragment = new bluetoothFragment();
                 break;
         }
 
