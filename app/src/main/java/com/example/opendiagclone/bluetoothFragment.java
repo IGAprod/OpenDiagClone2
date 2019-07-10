@@ -2,6 +2,7 @@ package com.example.opendiagclone;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -15,7 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +35,9 @@ import java.util.Set;
 
 public class bluetoothFragment extends Fragment {
 
-    private static final String TAG = "DeviceListActivity";
+    private static final String TAG = "bluetoothFragment";
+    public static String EXTRA_DEVICE_ADDRESS = "device_address";
+    public static String EXTRA_DEVICE_NAME = "device_name";
     private static final int PERMISSION_REQUEST_CODE = 0;
     private Set<BluetoothDevice> pairedDevices;
     private static final int REQUEST_ENABLE_BT = 0;
@@ -117,7 +122,7 @@ public class bluetoothFragment extends Fragment {
         }
 
         //Переделать
-        Long startTime =  java.lang.System.currentTimeMillis();
+        long startTime =  java.lang.System.currentTimeMillis();
         while (!mBtAdapter.isEnabled() || ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 if(  java.lang.System.currentTimeMillis() - startTime > 4000){
@@ -161,10 +166,31 @@ public class bluetoothFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.bluetooth_connection,container,false);
         ListView mListView = view.findViewById(R.id.bluetoothListView);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Log.d(TAG, "itemClick: position = " + position + ", id = "
+                        + id);
+                Device device = (Device) listAdapter.getItem(position);
+
+                Intent intent = new Intent();
+
+                intent.putExtra(EXTRA_DEVICE_ADDRESS, device.getDeviceAddress());
+                intent.putExtra(EXTRA_DEVICE_NAME,device.getDeviceName());
+
+                // Set result and finish this Activity
+                getActivity().setResult(Activity.RESULT_OK, intent);
+                Fragment fragment = new ParametersFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        fragment).commit();
+            }
+        });
         bluetoothConnection();
 
         listAdapter = new BluetoothListAdapter(getActivity(), deviceArrayList);
         mListView.setAdapter(listAdapter);
+
+
 
         return view;
     }

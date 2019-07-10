@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OpenDiagClone</string>
+    <string name="app_name">IpacMobile</string>
     <string name="title_information">Информация</string>
     <string name="title_parametrs">Параметры</string>
     <string name="title_errors">Ошибки</string>
