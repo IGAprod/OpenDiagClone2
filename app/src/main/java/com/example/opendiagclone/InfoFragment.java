@@ -13,10 +13,18 @@ import androidx.fragment.app.Fragment;
 
 import com.example.opendiagclone.adapter.InformationListAdapter;
 import com.example.opendiagclone.models.Information;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class InfoFragment extends Fragment {
+
+    InformationListAdapter adapter;
+
 
     @Nullable
     @Override
@@ -26,6 +34,7 @@ public class InfoFragment extends Fragment {
 
 
         ListView mListView = view.findViewById(R.id.listView);
+
 
         Information code = new Information("Код программного обеспечения",
                 "NOTSUPPORT");
@@ -42,7 +51,7 @@ public class InfoFragment extends Fragment {
 
 
 
-        InformationListAdapter adapter = new InformationListAdapter(getActivity(), informationArrayList);
+        adapter = new InformationListAdapter(getActivity(), informationArrayList);
         mListView.setAdapter(adapter);
 
         return view;

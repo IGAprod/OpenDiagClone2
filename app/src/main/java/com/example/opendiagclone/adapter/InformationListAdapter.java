@@ -9,8 +9,13 @@ import android.widget.TextView;
 
 import com.example.opendiagclone.R;
 import com.example.opendiagclone.models.Information;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class InformationListAdapter extends BaseAdapter {
 
@@ -42,13 +47,14 @@ public class InformationListAdapter extends BaseAdapter {
         return (Information) getItem(i);
     }
 
+
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null){
             view = layoutInflater.inflate(R.layout.item_layout,viewGroup,false);
         }
         Information information = getInformationModel(i);
-
         TextView textView = (TextView) view.findViewById(R.id.textView);
         TextView textView2 = (TextView) view.findViewById(R.id.textView2);
         textView.setText(information.getParametrs());

@@ -19,6 +19,65 @@ import java.util.ArrayList;
 
 public class ParametersFragment extends Fragment {
 
+    ParametersListAdapter adapter;
+
+    public void add(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i < 100; i++){
+                    getActivity().runOnUiThread(new Runnable(){
+                        @Override
+                        public void run(){
+                            adapter.addEntry(0);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    });
+                    try {
+                        Thread.sleep(600);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+    }
+
+
+
+   /* @Override
+    public void onResume(){
+        super.onResume();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i < 100; i++){
+                    getActivity().runOnUiThread(new Runnable(){
+                        @Override
+                        public void run(){
+                            adapter.addEntry(0);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    });
+                    try {
+                        Thread.sleep(600);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
+    } */
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,8 +102,10 @@ public class ParametersFragment extends Fragment {
 
 
 
-        ParametersListAdapter adapter = new ParametersListAdapter(getActivity(), parametersArrayList);
+        adapter = new ParametersListAdapter(getActivity(), parametersArrayList);
         mListView.setAdapter(adapter);
+
+        add();
 
         return view;
 
