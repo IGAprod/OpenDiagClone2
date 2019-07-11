@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">IpacMobile</string>
+    <string name="title_information">Информация</string>
+    <string name="title_parametrs">Параметры</string>
+    <string name="title_errors">Ошибки</string>
+    <string name="add_block">Выбор Блока</string>
+    <string name="bluetooth_connection">Подключение по Bluetooth</string>
+     <string name="none_found">Устройства не найдены</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
